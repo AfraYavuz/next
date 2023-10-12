@@ -12,7 +12,7 @@ const Agents: NextPage = () => {
       {data?.map((agent) => (
         <div className="text-white" key={agent.uuid}>
           <div>{agent.displayName}</div>
-          {agent.fullPortrait && (
+          {agent.bustPortrait && (
             <Image
               src={agent.bustPortrait}
               className="object-contain"

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm run open-browser && next dev",
-    "open-browser": "open http://localhost:3000/",
+    "open-browser": "start http://localhost:3000/",
     "build": "next build",
     "start": "next start",
     "lint": "next lint -- --max-warnings 0",
