@@ -15,3 +15,13 @@ export enum Routes {
   Agents = "/agents",
   Maps = "/maps",
 }
+
+export enum WeaponType {
+  All = "All",
+  HeavyWeapons = "Heavy Weapons",
+  Rifles = "Rifles",
+  Shotguns = "Shotguns",
+  Pistols = "Pistols",
+  SniperRifles = "Sniper Rifles",
+  SMGs = "SMGs",
+}

@@ -17,7 +17,7 @@ export const routes: { [key: string]: RouteItem } = {
     },
   },
   weapons: {
-    title: "Wepaons",
+    title: "Weapons",
     route: () => Routes.Weapons,
   },
   maps: {

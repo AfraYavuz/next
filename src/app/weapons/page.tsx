@@ -3,24 +3,34 @@ import React, { useState } from "react";
 import { useGetWeapons } from "@/api/services/weapons.service";
 import { NextPage } from "next";
 import Image from "next/image";
+import { WeaponType } from "@/utils/enums/enums";
 
 const Maps: NextPage = () => {
+  const [weaponType, setWeaponType] = useState<string>(WeaponType.All);
   const { data } = useGetWeapons();
-  const [weaponType, setWeaponType] = useState("");
+
+  const weaponTypeFilter = (
+    <select onChange={(e) => setWeaponType(e.target.value)}>
+      {Object.values(WeaponType).map((k) => (
+        <option key={k} value={k}>
+          {k}
+        </option>
+      ))}
+    </select>
+  );
 
   return (
-    <div className="flex flex-row flex-wrap items-center justify-center">
-      <select onChange={(e) => setWeaponType(e.target.value)}>
-        <option value="">All Weapons</option>
-        <option value="heavy weapons">Heavy Weapons</option>
-        <option value="rifles">Rifles</option>
-        <option value="shotguns">Shotguns</option>
-        <option value="pistols">Pistols</option>
-        <option value="sniper rifles">Sniper Rifles</option>
-        <option value="smgs">SMGs</option>
-        <option value="close fight">Close Fight</option>
+    <div className="flex flex-col flex-wrap items-center justify-center py-5 gap-y-5">
+      {/* Filter */}
+      {weaponTypeFilter}
+      {/* Weapons */}
+      <div className="flex flex-row flex-wrap justify-center">
         {data
-          ?.filter((w) => w.category === weaponType)
+          ?.filter((w) =>
+            weaponType === WeaponType.All
+              ? true
+              : weaponType === w.shopData?.category
+          )
           .map((weapon) => (
             <div key={weapon.uuid}>
               <div>{weapon.displayName}</div>
@@ -28,6 +38,7 @@ const Maps: NextPage = () => {
                 <Image
                   src={weapon.displayIcon}
                   className="object-contain"
+                  key={weapon.shopData?.category}
                   width={500}
                   height={500}
                   alt="weapons-image"
@@ -35,7 +46,7 @@ const Maps: NextPage = () => {
               )}
             </div>
           ))}
-      </select>
+      </div>
     </div>
   );
 };

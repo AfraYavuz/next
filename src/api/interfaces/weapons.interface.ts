@@ -1,3 +1,5 @@
+import { WeaponType } from "@/utils/enums/enums";
+
 export interface Weapon {
   uuid: string;
   displayName: string;
@@ -35,9 +37,9 @@ export interface Weapon {
     burstDistance: number;
   };
   damageRanges: DamageRange[];
-  shopData: {
+  shopData?: {
     cost: number;
-    category: string;
+    category: WeaponType;
     categoryText: string;
     gridPosition: {
       row: number;
