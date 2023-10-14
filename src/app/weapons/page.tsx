@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { useGetWeapons } from "@/api/services/weapons.service";
 import { NextPage } from "next";
-import Image from "next/image";
 import { WeaponType } from "@/utils/enums/enums";
+import Card from "@/components/card/card";
 
-const Maps: NextPage = () => {
+const Weapons: NextPage = () => {
   const [weaponType, setWeaponType] = useState<string>(WeaponType.All);
   const { data } = useGetWeapons();
 
@@ -32,23 +32,11 @@ const Maps: NextPage = () => {
               : weaponType === w.shopData?.category
           )
           .map((weapon) => (
-            <div key={weapon.uuid}>
-              <div>{weapon.displayName}</div>
-              {weapon.displayIcon && (
-                <Image
-                  src={weapon.displayIcon}
-                  className="object-contain"
-                  key={weapon.shopData?.category}
-                  width={500}
-                  height={500}
-                  alt="weapons-image"
-                />
-              )}
-            </div>
+            <Card key={weapon.uuid} weapon={weapon} />
           ))}
       </div>
     </div>
   );
 };
 
-export default Maps;
+export default Weapons;
