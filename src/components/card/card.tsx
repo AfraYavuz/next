@@ -1,16 +1,16 @@
 import { Weapon } from "@/api/interfaces/weapons.interface";
-import { NextPage } from "next";
 import Image from "next/image";
-import React from "react";
-interface CardProps {
-  weapon: Weapon; // Weapon tipinde bir prop
-}
-const Card: NextPage<CardProps> = ({ weapon }) => {
+import React, { FC } from "react";
+
+type Props = {
+  weapon: Weapon;
+};
+
+const Card: FC<Props> = ({ weapon }) => {
   return (
-    <div>
+    <div className="w-1/2">
       <div className="flex flex-wrap items-center justify-center mt-12">
-        <a className="relative block w-1/2 bg-gray-100 group" href="##">
-          <h6>{weapon.displayName}</h6>
+        <a className="relative block bg-gray-100 group" href="##">
           {weapon.displayIcon && (
             <Image
               src={weapon.displayIcon}
@@ -27,9 +27,7 @@ const Card: NextPage<CardProps> = ({ weapon }) => {
               {/* Hidden content */}
               <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                 <div className="p-2">
-                  <p className="text-lg text-white">
-                    Welcome to GeeksforGeeks.
-                  </p>
+                  <p className="text-lg text-black">{weapon.displayName}</p>
                   <button className="px-4 py-2 text-sm text-white bg-green-600">
                     Visit site
                   </button>
